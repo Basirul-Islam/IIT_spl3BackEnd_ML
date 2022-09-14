@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from getComments.extract_comments import *
 from detectSpam.detect_spam import *
-
+from accuracy.model_accuracy import *
 
 @api_view(['GET'])
 def hellow(request):
@@ -23,3 +23,8 @@ def detect_spam(request, comment):
     print("comment: ", comment)
     prediction = predict(comment)
     return Response(data=prediction)
+
+@api_view(['GET'])
+def model_accuracy(request):
+    data = get_accuracy()
+    return Response(data=data)

@@ -1,6 +1,6 @@
-from spl3.demo.get_comments.get_video_comments import *
-from spl3.demo.read_and_process_data.read_dataset import *
-from spl3.demo.train_and_test.prediction import *
+from get_comments.get_video_comments import *
+from read_and_process_data.read_dataset import *
+from train_and_test.prediction import *
 import pandas as pd
 def process_comments(input_comments_with_id):
     #input_comments_with_id = get__comments()

@@ -2,8 +2,8 @@ import joblib
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-from spl3.demo.read_and_process_data.read_dataset import *
-def train_model():
+from read_and_process_data.read_dataset import *
+def train_and_save_model():
     dataset = read_data()
     tfidf = get_tfidf(dataset = dataset)
     X = tfidf
@@ -23,3 +23,4 @@ def get_model_report():
     y_preds = nb.predict(X_test_tfidf)
     report = classification_report(y_test, y_preds)
     print(report)
+    return report

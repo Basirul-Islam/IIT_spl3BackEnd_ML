@@ -1,5 +1,5 @@
 import pandas as pd
-from spl3.demo.read_and_process_data.preprocess_data import *
+from read_and_process_data.preprocess_data import *
 def read_data():
     dataset = pd.read_csv("spl3/demo/read_and_process_data/YoutubeSpamMergedData.csv")
     dataset = dataset[["CONTENT", "CLASS"]]

@@ -1,6 +1,6 @@
-from spl3.demo.get_comments.get_video_comments import *
-from spl3.demo.preprocess_input_data.preprocess_comments import *
-from spl3.demo.train_and_test.prediction import *
+from get_comments.get_video_comments import *
+from preprocess_input_data.preprocess_comments import *
+from train_and_test.prediction import *
 class comments_with_spam_pred:
     def __init__(self, id, comment, pred):
         self.id = id
@@ -27,3 +27,4 @@ def get_spam_comments():
     # print(input_comments)
     # print(comments_with_spam_prediction.count())
     print(comments_with_spam_prediction)
+    return comments_with_spam_prediction

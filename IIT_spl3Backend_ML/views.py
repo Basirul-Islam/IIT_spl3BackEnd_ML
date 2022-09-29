@@ -1,30 +1,38 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from getComments.extract_comments import *
-from detectSpam.detect_spam import *
 from accuracy.model_accuracy import *
-
+from get_comments.get_spam_labeled_comments import *
+from train_and_test.train_and_save_model import *
 @api_view(['GET'])
 def hellow(request):
     print("triggered")
     return Response(data={"hellow, welcome to stocker"})
 
+@api_view(['GET'])
+def spam_comments(request):
+    data = get_spam_comments()
+    return Response(data=data)
 
 @api_view(['GET'])
+def save_model(request):
+    data = train_and_save_model()
+    return Response(data=data)
+
+'''@api_view(['GET'])
 def video_comments(request, url):
     # print(url)
     print(url)
     data = get__comments()
-    return Response(data=data)
+    return Response(data=data)'''
 
 
-@api_view(['GET'])
+'''@api_view(['GET'])
 def detect_spam(request, comment):
     print("comment: ", comment)
     prediction = predict(comment)
-    return Response(data=prediction)
+    return Response(data=prediction)'''
 
 @api_view(['GET'])
 def model_accuracy(request):
-    data = get_accuracy()
+    data = get_model_report()
     return Response(data=data)

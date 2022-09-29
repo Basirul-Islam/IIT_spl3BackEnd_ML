@@ -19,9 +19,11 @@ from .views import *
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('hellow/', hellow),
+    path('spam_comments/', spam_comments),
+    path('save_model/', save_model),
     #path('video_comments/(?P<url>\w+)/', video_comments),
-    path('video_comments/<str:url>/', video_comments),
-    path('detect_spam/<str:comment>/', detect_spam),
+    #path('video_comments/<str:url>/', video_comments),
+    #path('detect_spam/<str:comment>/', detect_spam),
     path('model_accuracy/', model_accuracy),
     #path('video_comments/<path converter: URL parmeter name>/', video_comments),
 ]

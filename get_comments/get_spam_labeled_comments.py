@@ -26,5 +26,5 @@ def get_spam_comments():
         # print(comment_isSpam.__dict__)
     # print(input_comments)
     # print(comments_with_spam_prediction.count())
-    print(comments_with_spam_prediction)
+    #print(comments_with_spam_prediction)
     return comments_with_spam_prediction

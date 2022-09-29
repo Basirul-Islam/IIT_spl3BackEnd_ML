@@ -6,7 +6,7 @@ from train_and_test.train_and_save_model import *
 @api_view(['GET'])
 def hellow(request):
     print("triggered")
-    return Response(data={"hellow, welcome to stocker"})
+    return Response(data={"hellow, welcome by Bashir"})
 
 @api_view(['GET'])
 def spam_comments(request):

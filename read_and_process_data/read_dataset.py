@@ -1,15 +1,15 @@
 import pandas as pd
 from read_and_process_data.preprocess_data import *
 def read_data():
-    dataset = pd.read_csv("spl3/demo/read_and_process_data/YoutubeSpamMergedData.csv")
+    dataset = pd.read_csv("read_and_process_data/YoutubeSpamMergedData.csv")
     dataset = dataset[["CONTENT", "CLASS"]]
     dataset['text length'] = dataset['CONTENT'].apply(len)
     comments = dataset.CONTENT
-    print(comments)
+    #print(comments)
     #dataset['processed_data'] = preprocess(comments)
     processed_comments = preprocess(comments)
     dataset['processed_comments'] = processed_comments
-    print(dataset[["processed_comments"]].head(10))
+    #print(dataset[["processed_comments"]].head(10))
     #get_tfidf(dataset=dataset)
     return dataset
     #print(dataset.head(10))
@@ -24,7 +24,7 @@ def get_tfidf(dataset):
     # TF-IDF feature matrix
     tfidf = tfidf_vectorizer.fit_transform(dataset['processed_comments'])
     tfidf
-    print(tfidf)
+    #print(tfidf)
     return tfidf
 
 def get_input_comments_tfidf(df):

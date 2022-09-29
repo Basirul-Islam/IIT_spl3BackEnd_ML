@@ -9,12 +9,12 @@ def process_comments(input_comments_with_id):
     for input_comment in input_comments_with_id:
         input_comments.append(input_comment['comment'])
         # print(input_comment['comment'])
-    print(input_comments)
+    #print(input_comments)
     return input_comments
 def get_tfidf_of_input_comments(processed_input_comments):
     #input_comments = process_comments()
     df = pd.DataFrame(processed_input_comments, columns=['processed_comments'])
-    print(df[["processed_comments"]])
+    #print(df[["processed_comments"]])
     tfidf_out = get_input_comments_tfidf(df=df)
     return tfidf_out
 

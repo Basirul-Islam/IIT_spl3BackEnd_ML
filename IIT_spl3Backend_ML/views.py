@@ -3,14 +3,25 @@ from rest_framework.response import Response
 from accuracy.model_accuracy import *
 from get_comments.get_spam_labeled_comments import *
 from train_and_test.train_and_save_model import *
-@api_view(['GET'])
+from data_models.url import *
+import json
+@api_view(['POST'])
 def hellow(request):
-    print("triggered")
+    #serializers.serialize('json', self.get_queryset())
+    #url = url_path(request.data).data.values()
+    for url in url_path(request.data).data.values():
+        print(url)
+        break
+    #return Response(data=json.dumps(url))
     return Response(data={"hellow, welcome by Bashir"})
 
 @api_view(['GET'])
 def spam_comments(request):
-    data = get_spam_comments()
+    for url in url_path(request.data).data.values():
+        path_url = url
+        #print(url)
+        break
+    data = get_spam_comments(path_url)
     return Response(data=data)
 
 @api_view(['GET'])

@@ -40,12 +40,12 @@ def video_comments(video_id):
         break
     return comments_with_ids
 
-def get__comments():
+def get__comments(path_url):
     from urllib.parse import urlparse
     #url_data = urlparse("https://www.youtube.com/watch?v=fLvJ8VdHLA0")
-    url_data = urlparse("https://www.youtube.com/watch?v=CevxZvSJLk8")
-    #url_data = urlparse(url)
-
+    #url_data = urlparse("https://www.youtube.com/watch?v=CevxZvSJLk8")
+    url_data = urlparse(path_url)
+    #print(url_data)
     #print(url_data.query[2::])
     import urllib
 
@@ -57,6 +57,6 @@ def get__comments():
     print("decoded path: ", urllib.parse.unquote(x))'''
     # video = query["v"][0]
     video_id = url_data.query[2::]
-
+    #print("video id: ", video_id)
     # Call function
     return video_comments(video_id)

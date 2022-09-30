@@ -7,9 +7,17 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from read_and_process_data.read_dataset import *
+
+
+class accuracy_of_model:
+    def __init__(self, model_name, accuracy, ):
+        self.model_name = model_name
+        self.accuracy = accuracy
+
+
 def train_and_save_model():
     dataset = read_data()
-    tfidf = get_tfidf(dataset = dataset)
+    tfidf = get_tfidf(dataset=dataset)
     X = tfidf
     y = dataset['CLASS'].astype(int)
     X_train_tfidf, X_test_tfidf, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.2)
@@ -30,6 +38,7 @@ def train_and_save_model():
     joblib.dump(dt, 'P://Projects//IIT_spl3BackEnd_ML//saved_models//DT.pkl')
     return ("ok")
 
+
 def get_model_report():
     report = []
     dataset = read_data()
@@ -43,10 +52,26 @@ def get_model_report():
     rf = joblib.load('P://Projects//IIT_spl3BackEnd_ML//saved_models//RF.pkl')
     dt = joblib.load('P://Projects//IIT_spl3BackEnd_ML//saved_models//DT.pkl')
     y_preds = nb.predict(X_test_tfidf)
-    model_report = classification_report(y_test, y_preds)
-    report.append(model_report)
+    model_accuracy = accuracy_score(y_test, y_preds)
+    accuracy_of_model("Naive Bayes", model_accuracy)
+    report.append(accuracy_of_model("Naive Bayes", model_accuracy).__dict__)
     y_preds = lr.predict(X_test_tfidf)
-    model_report = classification_report(y_test, y_preds)
-    report.append(model_report)
-    #print(report)
+    model_accuracy = accuracy_score(y_test, y_preds)
+    report.append(accuracy_of_model("Logistic Regression", model_accuracy).__dict__)
+    y_preds = svc.predict(X_test_tfidf)
+    model_accuracy = accuracy_score(y_test, y_preds)
+    report.append(accuracy_of_model("Support Vector Classifier", model_accuracy).__dict__)
+    y_preds = rf.predict(X_test_tfidf)
+    model_accuracy = accuracy_score(y_test, y_preds)
+    report.append(accuracy_of_model("Random Forest Classifier", model_accuracy).__dict__)
+    y_preds = dt.predict(X_test_tfidf)
+    model_accuracy = accuracy_score(y_test, y_preds)
+    report.append(accuracy_of_model("Decision Tree Classifier", model_accuracy).__dict__)
+
+    # model_report = classification_report(y_test, y_preds)
+    # report.append(model_report)
+    y_preds = lr.predict(X_test_tfidf)
+    # model_report = classification_report(y_test, y_preds)
+    # report.append(model_report)
+    # print(report)
     return report

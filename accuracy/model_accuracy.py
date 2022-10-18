@@ -1,6 +1,10 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
+import matplotlib.pyplot as plt
+import numpy
+from sklearn import metrics
+
 import joblib
 
 class accuracy_of_model:
@@ -36,6 +40,13 @@ def get_accuracy():
     rfc_accuracy = rfc.score(X_test, y_test)*100
     svc_accuracy = svc.score(X_test, y_test)*100
 
+    nb_y_pred = (nb.predict_proba(y_test)[:, 1] >= 0.8).astype(int)
+    nb_confusion_metric = metrics.confusion_matrix(y_test, nb_y_pred)
+
+    cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = nb_confusion_metric, display_labels = ["Spam", "Ham"])
+    cm_display.plot()
+    plt.show()
+    print(nb_confusion_metric)
     accuracy_arr = []
     accuracy_arr.append(accuracy_of_model("Naive Bayes", nb_accuracy).__dict__)
     accuracy_arr.append(accuracy_of_model("Logistic Regression", logisticreg_accuracy).__dict__)

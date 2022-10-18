@@ -4,10 +4,11 @@ api_key = 'AIzaSyDyvYZq6ucVpRno2YBH89Tz7FYjAIbGY3s'
 
 
 class comments:
-    def __init__(self, id, comment, ):
+    def __init__(self, id, comment, authorDisplayName, profileImageUrl ):
         self.id = id
         self.comment = comment
-
+        self.authorDisplayName = authorDisplayName
+        self.profileImageUrl = profileImageUrl
 
 def video_comments(video_id):
     youtube = build('youtube', 'v3',
@@ -28,11 +29,13 @@ def video_comments(video_id):
         count = 0
         for item in video_response['items']:
             count = count + 1
-
+            #print(item)
             id = item['id']
             # Extracting comments
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
-            comments_with_id = comments(id, comment)
+            author_name = item['snippet']['topLevelComment']['snippet']['authorDisplayName']
+            author_profile_image_url = item['snippet']['topLevelComment']['snippet']['authorProfileImageUrl']
+            comments_with_id = comments(id, comment, author_name, author_profile_image_url)
             comments_with_ids.append(comments_with_id.__dict__)
             # print(count)
             if count > 20:

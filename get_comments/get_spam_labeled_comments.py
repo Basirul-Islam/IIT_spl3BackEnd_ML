@@ -2,12 +2,15 @@ from get_comments.get_video_comments import *
 from preprocess_input_data.preprocess_comments import *
 from train_and_test.prediction import *
 class comments_with_spam_pred:
-    def __init__(self, id, comment, pred):
+    def __init__(self, id, comment, authorDisplayName, profileImageUrl, pred):
         self.id = id
         self.comment = comment
-        if pred == 1:
-            self.prediction = "spam"
-        else: self.prediction = "not spam"
+        self.authorDisplayName = authorDisplayName
+        self.profileImageUrl = profileImageUrl
+        self.prediction = pred
+        '''if pred == 1:
+            self.prediction = 1
+        else: self.prediction = 0'''
 def get_spam_comments(path_url):
     input_comments_with_id = get__comments(path_url=path_url)
     processed_input_comments = process_comments(input_comments_with_id)
@@ -16,7 +19,7 @@ def get_spam_comments(path_url):
     count = 0;
     comments_with_spam_prediction = []
     for input_comment in input_comments_with_id:
-        comment_isSpam = comments_with_spam_pred(input_comment['id'], input_comment['comment'], y_preds[count])
+        comment_isSpam = comments_with_spam_pred(input_comment['id'], input_comment['comment'], input_comment['authorDisplayName'], input_comment['profileImageUrl'], y_preds[count])
         count = count + 1
         comments_with_spam_prediction.append(comment_isSpam.__dict__)
     return comments_with_spam_prediction

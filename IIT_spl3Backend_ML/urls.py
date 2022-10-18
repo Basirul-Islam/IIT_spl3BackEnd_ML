@@ -20,6 +20,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('hellow/', hellow),
     path('spam_comments/', spam_comments),
+    path('get_comments/', get_comments),
     path('save_model/', save_model),
     #path('video_comments/(?P<url>\w+)/', video_comments),
     #path('video_comments/<str:url>/', video_comments),

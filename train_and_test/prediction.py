@@ -3,8 +3,8 @@ import joblib
 
 def get_prediction(tfidf_out):
     x_input = tfidf_out
-    nb = joblib.load('saved_models/NB.pkl')
-    dt = joblib.load('saved_models/DT.pkl')
+    nb = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/saved_models/NB.pkl')
+    #dt = joblib.load('saved_models/DT.pkl')
     # thresholding probability
     y_preds = (nb.predict_proba(x_input)[:, 1] >= 0.6).astype(int)
 

@@ -1,7 +1,7 @@
 import pandas as pd
 from read_and_process_data.preprocess_data import *
 def read_data():
-    dataset = pd.read_csv("read_and_process_data/YoutubeSpamMergedData.csv")
+    dataset = pd.read_csv('P:/Spl3/IIT_spl3BackEnd_ML/read_and_process_data/YoutubeSpamMergedData.csv')
     dataset = dataset[["CONTENT", "CLASS"]]
     dataset['text length'] = dataset['CONTENT'].apply(len)
     comments = dataset.CONTENT

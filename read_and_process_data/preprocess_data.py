@@ -10,7 +10,7 @@ from nltk.stem.porter import *
 stemmer = PorterStemmer()
 
 def preprocess(comments):
-    #print(comments)
+    #print("Input Data\n", comments)
     # removal of extra spaces
     regex_pat = re.compile(r'\s+')
     comment_space = comments.str.replace(regex_pat, ' ')

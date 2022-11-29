@@ -5,6 +5,10 @@ from get_comments.get_spam_labeled_comments import *
 from get_comments.get_video_comments import *
 from train_and_test.train_and_save_model import *
 from data_models.url import *
+from profanity_check.combine_feature import *
+from profanity_check.train_and_save_model import *
+from profanity_check.preprocess_input.combine_feature_for_input import *
+from profanity_check.test_model.test_saved_model import *
 import json
 @api_view(['POST'])
 def hellow(request):
@@ -56,4 +60,12 @@ def detect_spam(request, comment):
 @api_view(['GET'])
 def model_accuracy(request):
     data = get_model_report()
+    return Response(data=data)
+
+@api_view(['GET'])
+def get_doc2vec(request):
+    #data = get_combine_feature_2()
+    #data = train_model_and_save()
+    #data = combine_feacture_for_input()
+    data = get_profanity_prediction()
     return Response(data=data)

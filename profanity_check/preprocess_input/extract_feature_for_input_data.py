@@ -5,11 +5,12 @@ from profanity_check.read_dataset import *
 from gensim.test.utils import common_texts
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
-def get_tfidf_of_input_comments(comments):
-    #comments = preprocess(comments = comments)
+
+def get_tfidf_of_input_comments_for_hate(comments):
+    # comments = preprocess(comments = comments)
     df = pd.DataFrame(comments, columns=['processed_comments'])
     # print(df[["processed_comments"]])
-    #tfidf_out = get_input_comments_tfidf(df=df)
+    # tfidf_out = get_input_comments_tfidf(df=df)
 
     from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -31,8 +32,7 @@ def get_tfidf_of_input_comments(comments):
     # print(tfidf)
     return tfidf_out
 
-    #return tfidf_out
-
+    # return tfidf_out
 
 
 def sentiment_analysis(tweet):
@@ -133,6 +133,6 @@ def get_additonal_feature_array(tweets):
 
 
 def get_additional_feature_for_input_comments(tweets):
-    #processed_tweets = preprocess(tweets)
+    # processed_tweets = preprocess(tweets)
     fFeatures = get_additonal_feature_array(tweets)
     return fFeatures

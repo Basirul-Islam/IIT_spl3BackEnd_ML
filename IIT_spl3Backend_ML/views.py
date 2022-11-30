@@ -62,10 +62,20 @@ def model_accuracy(request):
     data = get_model_report()
     return Response(data=data)
 
-@api_view(['GET'])
-def get_doc2vec(request):
-    #data = get_combine_feature_2()
-    #data = train_model_and_save()
-    #data = combine_feacture_for_input()
-    data = get_profanity_prediction()
+# @api_view(['GET'])
+# def get_doc2vec(request):
+#     #data = get_combine_feature_2()
+#     #data = train_model_and_save()
+#     #data = combine_feacture_for_input()
+#     #data = get_profanity_prediction()
+#     data = get_spam_and_hate_comments()
+#     return Response(data=data)
+
+@api_view(['Post'])
+def get_spam_hate_comments(request):
+    for url in url_path(request.data).data.values():
+        path_url = url
+        #print(url)
+        break
+    data = get_spam_and_hate_comments(path_url)
     return Response(data=data)

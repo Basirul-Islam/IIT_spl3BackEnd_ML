@@ -26,6 +26,7 @@ urlpatterns = [
     #path('video_comments/<str:url>/', video_comments),
     #path('detect_spam/<str:comment>/', detect_spam),
     path('get_report/', model_accuracy),
-    path('get_doc2vec/', get_doc2vec),
+    path('get_spam_hate_comments/', get_spam_hate_comments),
+    #path('get_doc2vec/', get_doc2vec),
     #path('video_comments/<path converter: URL parmeter name>/', video_comments),
 ]

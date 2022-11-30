@@ -30,7 +30,7 @@ def get_tfidf(dataset):
 def get_input_comments_tfidf(df):
     dataset = read_data()
     from sklearn.feature_extraction.text import TfidfVectorizer
-
+    print(dataset['processed_comments'])
     # TF-IDF Features-F1
     # https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
     tfidf_vectorizer = TfidfVectorizer(ngram_range=(1, 2), max_df=0.75, min_df=5, max_features=10000)

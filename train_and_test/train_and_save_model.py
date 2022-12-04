@@ -15,10 +15,10 @@ from sklearn import metrics
 class model_report:
     def __init__(self, model_name, accuracy, f1Score, precision, recall, confusionMetrics):
         self.model_name = model_name
-        self.accuracy = accuracy
-        self.f1Score = f1Score
-        self.precision = precision
-        self.recall = recall
+        self.accuracy = accuracy*100
+        self.f1Score = f1Score*100
+        self.precision = precision*100
+        self.recall = recall*100
         self.confusionMetrics = confusionMetrics
 
 
@@ -38,11 +38,11 @@ def train_and_save_model():
     svc.fit(X_train_tfidf, y_train)
     rf.fit(X_train_tfidf, y_train)
     dt.fit(X_train_tfidf, y_train)
-    joblib.dump(nb, 'saved_models/NB.pkl')
-    joblib.dump(lr, 'saved_models/LR.pkl')
-    joblib.dump(svc, 'saved_models/SVC.pkl')
-    joblib.dump(rf, 'saved_models/RF.pkl')
-    joblib.dump(dt, 'saved_models/DT.pkl')
+    joblib.dump(nb, 'P:/Spl3/IIT_spl3BackEnd_ML/saved_models/NB.pkl')
+    joblib.dump(lr, 'P:/Spl3/IIT_spl3BackEnd_ML/saved_models/LR.pkl')
+    joblib.dump(svc, 'P:/Spl3/IIT_spl3BackEnd_ML/saved_models/SVC.pkl')
+    joblib.dump(rf, 'P:/Spl3/IIT_spl3BackEnd_ML/saved_models/RF.pkl')
+    joblib.dump(dt, 'P:/Spl3/IIT_spl3BackEnd_ML/saved_models/DT.pkl')
     return ("ok")
 
 def get_metric(model_name, y_test, y_pred):
@@ -57,19 +57,37 @@ def get_metric(model_name, y_test, y_pred):
     return report.__dict__
 def get_model_report():
     report = []
+    # dataset = read_data()
+    # tfidf = get_tfidf(dataset=dataset)
+    # X = tfidf
+    # y = dataset['CLASS'].astype(int)
+    # X_train_tfidf, X_test_tfidf, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.2)
+    # nb = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/pickles/nb.pkl')
+    # lr = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/pickles/LogisticReg.pkl')
+    # svc = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/pickles/svc.pkl')
+    # rf = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/pickles/rfc.pkl')
+    # dt = joblib.load('P:/Spl3/IIT_spl3BackEnd_ML/pickles/dtc.pkl')
+    #y_preds = nb.predict(X_test_tfidf)
+    #model_accuracy = accuracy_score(y_test, y_preds)
+    #model_report("Naive Bayes", model_accuracy)
+
     dataset = read_data()
     tfidf = get_tfidf(dataset=dataset)
     X = tfidf
     y = dataset['CLASS'].astype(int)
     X_train_tfidf, X_test_tfidf, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.2)
-    nb = joblib.load('saved_models/NB.pkl')
-    lr = joblib.load('saved_models/LR.pkl')
-    svc = joblib.load('saved_models/SVC.pkl')
-    rf = joblib.load('saved_models/RF.pkl')
-    dt = joblib.load('saved_models/DT.pkl')
-    #y_preds = nb.predict(X_test_tfidf)
-    #model_accuracy = accuracy_score(y_test, y_preds)
-    #model_report("Naive Bayes", model_accuracy)
+    nb = MultinomialNB()
+    lr = LogisticRegression()
+    svc = SVC(probability=True)
+    rf = RandomForestClassifier()
+    dt = DecisionTreeClassifier()
+    nb.fit(X_train_tfidf, y_train)
+    lr.fit(X_train_tfidf, y_train)
+    svc.fit(X_train_tfidf, y_train)
+    rf.fit(X_train_tfidf, y_train)
+    dt.fit(X_train_tfidf, y_train)
+
+
 
     nb_y_pred = (nb.predict_proba(X_test_tfidf)[:, 1] >= 0.8).astype(int)
     lr_y_pred = (lr.predict_proba(X_test_tfidf)[:, 1] >= 0.8).astype(int)

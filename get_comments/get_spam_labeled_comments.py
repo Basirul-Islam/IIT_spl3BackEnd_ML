@@ -10,7 +10,7 @@ class comments_with_spam_pred:
         self.comment = comment
         self.authorDisplayName = authorDisplayName
         self.profileImageUrl = profileImageUrl
-        self.prediction = pred
+        self.spam_prediction = pred
         '''if pred == 1:
             self.prediction = 1
         else: self.prediction = 0'''
